@@ -21,6 +21,13 @@ public class Atividade {
     @OneToMany(mappedBy = "atividades")
     private List<Participante> particiantes = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+
+
+
     public Integer getId() {
         return id;
     }
@@ -57,6 +64,16 @@ public class Atividade {
         return particiantes;
     }
 
+
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
     public Atividade(Integer id, String nome, String descricao, Double preco, List<Participante> particiantes) {
         this.id = id;
         this.nome = nome;
@@ -64,6 +81,8 @@ public class Atividade {
         this.preco = preco;
         this.particiantes = particiantes;
     }
+
+
 
     public Atividade(){
 
