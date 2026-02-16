@@ -25,6 +25,8 @@ public class Atividade {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @OneToMany(mappedBy = "atividade")
+    private List<Bloco> blocos = new ArrayList<>();
 
 
 
@@ -64,7 +66,9 @@ public class Atividade {
         return particiantes;
     }
 
-
+    public List<Bloco> getBlocos() {
+        return blocos;
+    }
 
     public Categoria getCategoria() {
         return categoria;
