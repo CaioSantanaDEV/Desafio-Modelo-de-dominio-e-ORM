@@ -21,7 +21,7 @@ public class Bloco {
     private Instant fim;
 
     @ManyToOne
-    @JoinColumn(name = "atividades")
+    @JoinColumn(name = "atividade_id")
     private Atividade atividade;
 
 

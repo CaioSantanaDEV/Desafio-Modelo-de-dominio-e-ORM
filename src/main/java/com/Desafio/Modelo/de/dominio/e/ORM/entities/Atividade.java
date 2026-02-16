@@ -3,7 +3,9 @@ package com.Desafio.Modelo.de.dominio.e.ORM.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -18,15 +20,20 @@ public class Atividade {
     private String descricao;
     private Double preco;
 
-    @OneToMany(mappedBy = "atividades")
-    private List<Participante> particiantes = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
+    @ManyToMany(mappedBy = "atividade")
+    private Set<Participante> participante = new HashSet<>();
+
+
+
     @OneToMany(mappedBy = "atividade")
     private List<Bloco> blocos = new ArrayList<>();
+
+
 
 
 
@@ -62,9 +69,6 @@ public class Atividade {
         this.preco = preco;
     }
 
-    public List<Participante> getParticiantes() {
-        return particiantes;
-    }
 
     public List<Bloco> getBlocos() {
         return blocos;
@@ -78,12 +82,11 @@ public class Atividade {
         this.categoria = categoria;
     }
 
-    public Atividade(Integer id, String nome, String descricao, Double preco, List<Participante> particiantes) {
+    public Atividade(Integer id, String nome, String descricao, Double preco) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
-        this.particiantes = particiantes;
     }
 
 

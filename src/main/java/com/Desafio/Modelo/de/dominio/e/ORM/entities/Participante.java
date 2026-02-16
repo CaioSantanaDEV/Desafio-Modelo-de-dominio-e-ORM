@@ -3,6 +3,9 @@ package com.Desafio.Modelo.de.dominio.e.ORM.entities;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_participantes")
 public class Participante {
@@ -17,9 +20,10 @@ public class Participante {
     private String email;
 
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "atividades_id")
-    private Atividade atividades;
+    @ManyToMany
+    @JoinTable(name = "tb_participante_atividade")
+    private Set<Atividade> atividade = new HashSet<>();
+
 
 
     public Integer getId() {
@@ -46,19 +50,12 @@ public class Participante {
         this.email = email;
     }
 
-    public Atividade getAtividades() {
-        return atividades;
-    }
 
-    public void setAtividades(Atividade atividades) {
-        this.atividades = atividades;
-    }
-
-    public Participante(Integer id, String nome, String email, Atividade atividades) {
+    public Participante(Integer id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.atividades = atividades;
+
     }
 
     public Participante() {
